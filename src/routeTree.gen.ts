@@ -9,50 +9,645 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/_app'
+import { Route as WelcomeRouteImport } from './routes/welcome'
+import { Route as AppIndexRouteImport } from './routes/_app.index'
+import { Route as AppAnalyticsRouteImport } from './routes/_app.analytics'
+import { Route as AppCalendarRouteImport } from './routes/_app.calendar'
+import { Route as AppCrmRouteImport } from './routes/_app.crm'
+import { Route as AppEmailRouteImport } from './routes/_app.email'
+import { Route as AppExportsRouteImport } from './routes/_app.exports'
+import { Route as AppIntegrationsRouteImport } from './routes/_app.integrations'
+import { Route as AppKnowledgeRouteImport } from './routes/_app.knowledge'
+import { Route as AppPhoneRouteImport } from './routes/_app.phone'
+import { Route as AppRecordingsRouteImport } from './routes/_app.recordings'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
+import { Route as AppSystemRouteImport } from './routes/_app.system'
+import { Route as AppTestAiRouteImport } from './routes/_app.test-ai'
+import { Route as AppTranscriptsRouteImport } from './routes/_app.transcripts'
+import { Route as AppWebchatRouteImport } from './routes/_app.webchat'
+import { Route as AppWhatsappRouteImport } from './routes/_app.whatsapp'
+import { Route as AppCallsIndexRouteImport } from './routes/_app.calls.index'
+import { Route as AppCallsIdRouteImport } from './routes/_app.calls.$id'
+import { Route as AppCallsOutboundRouteImport } from './routes/_app.calls.outbound'
+import { Route as AppCampaignsIndexRouteImport } from './routes/_app.campaigns.index'
+import { Route as AppCampaignsIdRouteImport } from './routes/_app.campaigns.$id'
+import { Route as AppContactsIndexRouteImport } from './routes/_app.contacts.index'
+import { Route as AppContactsIdRouteImport } from './routes/_app.contacts.$id'
+import { Route as AppConversationsIndexRouteImport } from './routes/_app.conversations.index'
+import { Route as AppEmployeesIndexRouteImport } from './routes/_app.employees.index'
+import { Route as AppEmployeesIdRouteImport } from './routes/_app.employees.$id'
+import { Route as AppEmployeesNewRouteImport } from './routes/_app.employees.new'
 
-const IndexRoute = IndexRouteImport.update({
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WelcomeRoute = WelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCalendarRoute = AppCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCrmRoute = AppCrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmailRoute = AppEmailRouteImport.update({
+  id: '/email',
+  path: '/email',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppExportsRoute = AppExportsRouteImport.update({
+  id: '/exports',
+  path: '/exports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppIntegrationsRoute = AppIntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppKnowledgeRoute = AppKnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPhoneRoute = AppPhoneRouteImport.update({
+  id: '/phone',
+  path: '/phone',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRecordingsRoute = AppRecordingsRouteImport.update({
+  id: '/recordings',
+  path: '/recordings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSystemRoute = AppSystemRouteImport.update({
+  id: '/system',
+  path: '/system',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTestAiRoute = AppTestAiRouteImport.update({
+  id: '/test-ai',
+  path: '/test-ai',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTranscriptsRoute = AppTranscriptsRouteImport.update({
+  id: '/transcripts',
+  path: '/transcripts',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppWebchatRoute = AppWebchatRouteImport.update({
+  id: '/webchat',
+  path: '/webchat',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppWhatsappRoute = AppWhatsappRouteImport.update({
+  id: '/whatsapp',
+  path: '/whatsapp',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCallsIndexRoute = AppCallsIndexRouteImport.update({
+  id: '/calls/',
+  path: '/calls/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCallsIdRoute = AppCallsIdRouteImport.update({
+  id: '/calls/$id',
+  path: '/calls/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCallsOutboundRoute = AppCallsOutboundRouteImport.update({
+  id: '/calls/outbound',
+  path: '/calls/outbound',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCampaignsIndexRoute = AppCampaignsIndexRouteImport.update({
+  id: '/campaigns/',
+  path: '/campaigns/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCampaignsIdRoute = AppCampaignsIdRouteImport.update({
+  id: '/campaigns/$id',
+  path: '/campaigns/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppContactsIndexRoute = AppContactsIndexRouteImport.update({
+  id: '/contacts/',
+  path: '/contacts/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppContactsIdRoute = AppContactsIdRouteImport.update({
+  id: '/contacts/$id',
+  path: '/contacts/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConversationsIndexRoute = AppConversationsIndexRouteImport.update({
+  id: '/conversations/',
+  path: '/conversations/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmployeesIndexRoute = AppEmployeesIndexRouteImport.update({
+  id: '/employees/',
+  path: '/employees/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmployeesIdRoute = AppEmployeesIdRouteImport.update({
+  id: '/employees/$id',
+  path: '/employees/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmployeesNewRoute = AppEmployeesNewRouteImport.update({
+  id: '/employees/new',
+  path: '/employees/new',
+  getParentRoute: () => AppRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof AppIndexRoute
+  '/welcome': typeof WelcomeRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/calendar': typeof AppCalendarRoute
+  '/crm': typeof AppCrmRoute
+  '/email': typeof AppEmailRoute
+  '/exports': typeof AppExportsRoute
+  '/integrations': typeof AppIntegrationsRoute
+  '/knowledge': typeof AppKnowledgeRoute
+  '/phone': typeof AppPhoneRoute
+  '/recordings': typeof AppRecordingsRoute
+  '/settings': typeof AppSettingsRoute
+  '/system': typeof AppSystemRoute
+  '/test-ai': typeof AppTestAiRoute
+  '/transcripts': typeof AppTranscriptsRoute
+  '/webchat': typeof AppWebchatRoute
+  '/whatsapp': typeof AppWhatsappRoute
+  '/calls/$id': typeof AppCallsIdRoute
+  '/calls/outbound': typeof AppCallsOutboundRoute
+  '/campaigns/$id': typeof AppCampaignsIdRoute
+  '/contacts/$id': typeof AppContactsIdRoute
+  '/employees/$id': typeof AppEmployeesIdRoute
+  '/employees/new': typeof AppEmployeesNewRoute
+  '/calls/': typeof AppCallsIndexRoute
+  '/campaigns/': typeof AppCampaignsIndexRoute
+  '/contacts/': typeof AppContactsIndexRoute
+  '/conversations/': typeof AppConversationsIndexRoute
+  '/employees/': typeof AppEmployeesIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/welcome': typeof WelcomeRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/calendar': typeof AppCalendarRoute
+  '/crm': typeof AppCrmRoute
+  '/email': typeof AppEmailRoute
+  '/exports': typeof AppExportsRoute
+  '/integrations': typeof AppIntegrationsRoute
+  '/knowledge': typeof AppKnowledgeRoute
+  '/phone': typeof AppPhoneRoute
+  '/recordings': typeof AppRecordingsRoute
+  '/settings': typeof AppSettingsRoute
+  '/system': typeof AppSystemRoute
+  '/test-ai': typeof AppTestAiRoute
+  '/transcripts': typeof AppTranscriptsRoute
+  '/webchat': typeof AppWebchatRoute
+  '/whatsapp': typeof AppWhatsappRoute
+  '/': typeof AppIndexRoute
+  '/calls/$id': typeof AppCallsIdRoute
+  '/calls/outbound': typeof AppCallsOutboundRoute
+  '/campaigns/$id': typeof AppCampaignsIdRoute
+  '/contacts/$id': typeof AppContactsIdRoute
+  '/employees/$id': typeof AppEmployeesIdRoute
+  '/employees/new': typeof AppEmployeesNewRoute
+  '/calls': typeof AppCallsIndexRoute
+  '/campaigns': typeof AppCampaignsIndexRoute
+  '/contacts': typeof AppContactsIndexRoute
+  '/conversations': typeof AppConversationsIndexRoute
+  '/employees': typeof AppEmployeesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/welcome': typeof WelcomeRoute
+  '/_app/analytics': typeof AppAnalyticsRoute
+  '/_app/calendar': typeof AppCalendarRoute
+  '/_app/crm': typeof AppCrmRoute
+  '/_app/email': typeof AppEmailRoute
+  '/_app/exports': typeof AppExportsRoute
+  '/_app/integrations': typeof AppIntegrationsRoute
+  '/_app/knowledge': typeof AppKnowledgeRoute
+  '/_app/phone': typeof AppPhoneRoute
+  '/_app/recordings': typeof AppRecordingsRoute
+  '/_app/settings': typeof AppSettingsRoute
+  '/_app/system': typeof AppSystemRoute
+  '/_app/test-ai': typeof AppTestAiRoute
+  '/_app/transcripts': typeof AppTranscriptsRoute
+  '/_app/webchat': typeof AppWebchatRoute
+  '/_app/whatsapp': typeof AppWhatsappRoute
+  '/_app/': typeof AppIndexRoute
+  '/_app/calls/$id': typeof AppCallsIdRoute
+  '/_app/calls/outbound': typeof AppCallsOutboundRoute
+  '/_app/campaigns/$id': typeof AppCampaignsIdRoute
+  '/_app/contacts/$id': typeof AppContactsIdRoute
+  '/_app/employees/$id': typeof AppEmployeesIdRoute
+  '/_app/employees/new': typeof AppEmployeesNewRoute
+  '/_app/calls/': typeof AppCallsIndexRoute
+  '/_app/campaigns/': typeof AppCampaignsIndexRoute
+  '/_app/contacts/': typeof AppContactsIndexRoute
+  '/_app/conversations/': typeof AppConversationsIndexRoute
+  '/_app/employees/': typeof AppEmployeesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/welcome'
+    | '/analytics'
+    | '/calendar'
+    | '/crm'
+    | '/email'
+    | '/exports'
+    | '/integrations'
+    | '/knowledge'
+    | '/phone'
+    | '/recordings'
+    | '/settings'
+    | '/system'
+    | '/test-ai'
+    | '/transcripts'
+    | '/webchat'
+    | '/whatsapp'
+    | '/calls/$id'
+    | '/calls/outbound'
+    | '/campaigns/$id'
+    | '/contacts/$id'
+    | '/employees/$id'
+    | '/employees/new'
+    | '/calls/'
+    | '/campaigns/'
+    | '/contacts/'
+    | '/conversations/'
+    | '/employees/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/welcome'
+    | '/analytics'
+    | '/calendar'
+    | '/crm'
+    | '/email'
+    | '/exports'
+    | '/integrations'
+    | '/knowledge'
+    | '/phone'
+    | '/recordings'
+    | '/settings'
+    | '/system'
+    | '/test-ai'
+    | '/transcripts'
+    | '/webchat'
+    | '/whatsapp'
+    | '/'
+    | '/calls/$id'
+    | '/calls/outbound'
+    | '/campaigns/$id'
+    | '/contacts/$id'
+    | '/employees/$id'
+    | '/employees/new'
+    | '/calls'
+    | '/campaigns'
+    | '/contacts'
+    | '/conversations'
+    | '/employees'
+  id:
+    | '__root__'
+    | '/_app'
+    | '/welcome'
+    | '/_app/analytics'
+    | '/_app/calendar'
+    | '/_app/crm'
+    | '/_app/email'
+    | '/_app/exports'
+    | '/_app/integrations'
+    | '/_app/knowledge'
+    | '/_app/phone'
+    | '/_app/recordings'
+    | '/_app/settings'
+    | '/_app/system'
+    | '/_app/test-ai'
+    | '/_app/transcripts'
+    | '/_app/webchat'
+    | '/_app/whatsapp'
+    | '/_app/'
+    | '/_app/calls/$id'
+    | '/_app/calls/outbound'
+    | '/_app/campaigns/$id'
+    | '/_app/contacts/$id'
+    | '/_app/employees/$id'
+    | '/_app/employees/new'
+    | '/_app/calls/'
+    | '/_app/campaigns/'
+    | '/_app/contacts/'
+    | '/_app/conversations/'
+    | '/_app/employees/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  WelcomeRoute: typeof WelcomeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app/': {
+      id: '/_app/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/analytics': {
+      id: '/_app/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/calendar': {
+      id: '/_app/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof AppCalendarRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/crm': {
+      id: '/_app/crm'
+      path: '/crm'
+      fullPath: '/crm'
+      preLoaderRoute: typeof AppCrmRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/email': {
+      id: '/_app/email'
+      path: '/email'
+      fullPath: '/email'
+      preLoaderRoute: typeof AppEmailRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/exports': {
+      id: '/_app/exports'
+      path: '/exports'
+      fullPath: '/exports'
+      preLoaderRoute: typeof AppExportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/integrations': {
+      id: '/_app/integrations'
+      path: '/integrations'
+      fullPath: '/integrations'
+      preLoaderRoute: typeof AppIntegrationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/knowledge': {
+      id: '/_app/knowledge'
+      path: '/knowledge'
+      fullPath: '/knowledge'
+      preLoaderRoute: typeof AppKnowledgeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/phone': {
+      id: '/_app/phone'
+      path: '/phone'
+      fullPath: '/phone'
+      preLoaderRoute: typeof AppPhoneRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/recordings': {
+      id: '/_app/recordings'
+      path: '/recordings'
+      fullPath: '/recordings'
+      preLoaderRoute: typeof AppRecordingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/system': {
+      id: '/_app/system'
+      path: '/system'
+      fullPath: '/system'
+      preLoaderRoute: typeof AppSystemRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/test-ai': {
+      id: '/_app/test-ai'
+      path: '/test-ai'
+      fullPath: '/test-ai'
+      preLoaderRoute: typeof AppTestAiRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/transcripts': {
+      id: '/_app/transcripts'
+      path: '/transcripts'
+      fullPath: '/transcripts'
+      preLoaderRoute: typeof AppTranscriptsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/webchat': {
+      id: '/_app/webchat'
+      path: '/webchat'
+      fullPath: '/webchat'
+      preLoaderRoute: typeof AppWebchatRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/whatsapp': {
+      id: '/_app/whatsapp'
+      path: '/whatsapp'
+      fullPath: '/whatsapp'
+      preLoaderRoute: typeof AppWhatsappRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/calls/': {
+      id: '/_app/calls/'
+      path: '/calls'
+      fullPath: '/calls/'
+      preLoaderRoute: typeof AppCallsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/calls/$id': {
+      id: '/_app/calls/$id'
+      path: '/calls/$id'
+      fullPath: '/calls/$id'
+      preLoaderRoute: typeof AppCallsIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/calls/outbound': {
+      id: '/_app/calls/outbound'
+      path: '/calls/outbound'
+      fullPath: '/calls/outbound'
+      preLoaderRoute: typeof AppCallsOutboundRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/campaigns/': {
+      id: '/_app/campaigns/'
+      path: '/campaigns'
+      fullPath: '/campaigns/'
+      preLoaderRoute: typeof AppCampaignsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/campaigns/$id': {
+      id: '/_app/campaigns/$id'
+      path: '/campaigns/$id'
+      fullPath: '/campaigns/$id'
+      preLoaderRoute: typeof AppCampaignsIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/contacts/': {
+      id: '/_app/contacts/'
+      path: '/contacts'
+      fullPath: '/contacts/'
+      preLoaderRoute: typeof AppContactsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/contacts/$id': {
+      id: '/_app/contacts/$id'
+      path: '/contacts/$id'
+      fullPath: '/contacts/$id'
+      preLoaderRoute: typeof AppContactsIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/conversations/': {
+      id: '/_app/conversations/'
+      path: '/conversations'
+      fullPath: '/conversations/'
+      preLoaderRoute: typeof AppConversationsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/employees/': {
+      id: '/_app/employees/'
+      path: '/employees'
+      fullPath: '/employees/'
+      preLoaderRoute: typeof AppEmployeesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/employees/$id': {
+      id: '/_app/employees/$id'
+      path: '/employees/$id'
+      fullPath: '/employees/$id'
+      preLoaderRoute: typeof AppEmployeesIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/employees/new': {
+      id: '/_app/employees/new'
+      path: '/employees/new'
+      fullPath: '/employees/new'
+      preLoaderRoute: typeof AppEmployeesNewRouteImport
+      parentRoute: typeof AppRoute
     }
   }
 }
 
+interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppCalendarRoute: typeof AppCalendarRoute
+  AppCrmRoute: typeof AppCrmRoute
+  AppEmailRoute: typeof AppEmailRoute
+  AppExportsRoute: typeof AppExportsRoute
+  AppIntegrationsRoute: typeof AppIntegrationsRoute
+  AppKnowledgeRoute: typeof AppKnowledgeRoute
+  AppPhoneRoute: typeof AppPhoneRoute
+  AppRecordingsRoute: typeof AppRecordingsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppSystemRoute: typeof AppSystemRoute
+  AppTestAiRoute: typeof AppTestAiRoute
+  AppTranscriptsRoute: typeof AppTranscriptsRoute
+  AppWebchatRoute: typeof AppWebchatRoute
+  AppWhatsappRoute: typeof AppWhatsappRoute
+  AppIndexRoute: typeof AppIndexRoute
+  AppCallsIdRoute: typeof AppCallsIdRoute
+  AppCallsOutboundRoute: typeof AppCallsOutboundRoute
+  AppCampaignsIdRoute: typeof AppCampaignsIdRoute
+  AppContactsIdRoute: typeof AppContactsIdRoute
+  AppEmployeesIdRoute: typeof AppEmployeesIdRoute
+  AppEmployeesNewRoute: typeof AppEmployeesNewRoute
+  AppCallsIndexRoute: typeof AppCallsIndexRoute
+  AppCampaignsIndexRoute: typeof AppCampaignsIndexRoute
+  AppContactsIndexRoute: typeof AppContactsIndexRoute
+  AppConversationsIndexRoute: typeof AppConversationsIndexRoute
+  AppEmployeesIndexRoute: typeof AppEmployeesIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
+  AppCalendarRoute: AppCalendarRoute,
+  AppCrmRoute: AppCrmRoute,
+  AppEmailRoute: AppEmailRoute,
+  AppExportsRoute: AppExportsRoute,
+  AppIntegrationsRoute: AppIntegrationsRoute,
+  AppKnowledgeRoute: AppKnowledgeRoute,
+  AppPhoneRoute: AppPhoneRoute,
+  AppRecordingsRoute: AppRecordingsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppSystemRoute: AppSystemRoute,
+  AppTestAiRoute: AppTestAiRoute,
+  AppTranscriptsRoute: AppTranscriptsRoute,
+  AppWebchatRoute: AppWebchatRoute,
+  AppWhatsappRoute: AppWhatsappRoute,
+  AppIndexRoute: AppIndexRoute,
+  AppCallsIdRoute: AppCallsIdRoute,
+  AppCallsOutboundRoute: AppCallsOutboundRoute,
+  AppCampaignsIdRoute: AppCampaignsIdRoute,
+  AppContactsIdRoute: AppContactsIdRoute,
+  AppEmployeesIdRoute: AppEmployeesIdRoute,
+  AppEmployeesNewRoute: AppEmployeesNewRoute,
+  AppCallsIndexRoute: AppCallsIndexRoute,
+  AppCampaignsIndexRoute: AppCampaignsIndexRoute,
+  AppContactsIndexRoute: AppContactsIndexRoute,
+  AppConversationsIndexRoute: AppConversationsIndexRoute,
+  AppEmployeesIndexRoute: AppEmployeesIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  WelcomeRoute: WelcomeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
