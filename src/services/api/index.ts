@@ -15,6 +15,9 @@ import type {
   ServiceHealth,
 } from "../types";
 import { delay, request, USE_MOCK } from "./client";
+import { assistantApi, systemControlApi, tasksApi } from "./assistant";
+
+export { assistantApi, systemControlApi, tasksApi } from "./assistant";
 
 /* ------------------------------------------------------------------ /api/system */
 export const systemApi = {
@@ -184,6 +187,9 @@ export const analyticsApi = {
 };
 
 export const api = {
+  assistant: assistantApi,
+  tasks: tasksApi,
+  systemControl: systemControlApi,
   system: systemApi,
   agents: agentsApi,
   models: modelsApi,
