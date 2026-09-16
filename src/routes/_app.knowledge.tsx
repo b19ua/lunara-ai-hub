@@ -21,6 +21,7 @@ import {
   Pill,
   StatusDot,
 } from "@/components/lunara/primitives";
+import { AskLunaraButton } from "@/components/lunara/assistant";
 import { api } from "@/services/api";
 
 export const Route = createFileRoute("/_app/knowledge")({
@@ -48,7 +49,11 @@ function Knowledge() {
 
   return (
     <div className="mx-auto max-w-[1100px]">
-      <PageHeader title="Knowledge" description="What should your AI employees know?" />
+      <PageHeader
+        title="Knowledge"
+        description="What should your AI employees know?"
+        actions={<AskLunaraButton prompt="Organize my knowledge for my AI employees." />}
+      />
 
       <label
         onDragOver={(e) => {

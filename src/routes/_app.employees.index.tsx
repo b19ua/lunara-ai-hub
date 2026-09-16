@@ -12,6 +12,7 @@ import {
   Pill,
   StatusDot,
 } from "@/components/lunara/primitives";
+import { AskLunaraButton } from "@/components/lunara/assistant";
 import { api } from "@/services/api";
 import type { Channel } from "@/services/types";
 
@@ -50,11 +51,14 @@ function EmployeesPage() {
         title="AI Employees"
         description="Each employee has its own brain, voice, channels and knowledge."
         actions={
-          <Button asChild>
-            <Link to="/employees/new">
-              <Bot /> Create AI Employee
-            </Link>
-          </Button>
+          <>
+            <AskLunaraButton prompt="Create an AI employee for me." />
+            <Button asChild>
+              <Link to="/employees/new">
+                <Bot /> Create AI Employee
+              </Link>
+            </Button>
+          </>
         }
       />
 

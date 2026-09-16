@@ -33,6 +33,7 @@ import {
   Pill,
   StatusDot,
 } from "@/components/lunara/primitives";
+import { AskLunaraButton } from "@/components/lunara/assistant";
 import { api } from "@/services/api";
 
 export const Route = createFileRoute("/_app/phone")({
@@ -157,7 +158,12 @@ function PhonePage() {
       <PageHeader
         title="Phone system"
         description="Your numbers and who answers them."
-        actions={<AddNumberWizard />}
+        actions={
+          <>
+            <AskLunaraButton prompt="Check my phone system." label="Ask Lunara to check my phone" />
+            <AddNumberWizard />
+          </>
+        }
       />
 
       <Card className="mb-4 flex-row items-center gap-3 p-4">

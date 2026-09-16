@@ -62,6 +62,7 @@ const nav: { section: string; items: NavItem[] }[] = [
     section: "Operations",
     items: [
       { label: "Overview", to: "/", icon: <LayoutDashboard className="size-4" /> },
+      { label: "Lunara Assistant", to: "/assistant", icon: <Sparkles className="size-4" /> },
       { label: "AI Employees", to: "/employees", icon: <Bot className="size-4" /> },
       {
         label: "Calls",

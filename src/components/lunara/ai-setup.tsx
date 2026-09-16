@@ -85,8 +85,8 @@ export function AiModeCards({
         <div className="flex size-10 items-center justify-center rounded-xl bg-accent/12 text-accent">
           <Cloud className="size-5" />
         </div>
-        <h3 className="mt-4 text-lg font-semibold">Realtime AI</h3>
-        <p className="text-sm text-muted-foreground">Use a realtime cloud voice model.</p>
+        <h3 className="mt-4 text-lg font-semibold">Cloud AI</h3>
+        <p className="text-sm text-muted-foreground">Use a premium cloud AI model.</p>
         <ul className="mt-4 space-y-2 text-sm">
           {[
             "Extremely natural conversations",
@@ -104,7 +104,7 @@ export function AiModeCards({
           variant={value === "realtime" ? "default" : "outline"}
           onClick={() => onChange("realtime")}
         >
-          Use Realtime AI
+          Use Cloud AI
         </Button>
       </Card>
     </div>
@@ -316,10 +316,16 @@ export function RealtimeProviderSetup({
   const [state, setState] = useState<"idle" | "connecting" | "connected">("idle");
   const [model, setModel] = useState<string | null>(null);
 
+  const isCloudProvider = provider === "openrouter";
+
   const models = useQuery({
-    queryKey: ["models", "realtime", provider],
-    queryFn: () => api.models.realtime(provider as string),
-    enabled: state === "connected" && !!provider,
+    queryKey: ["models", isCloudProvider ? "cloud" : "realtime", provider],
+    queryFn: () =>
+      isCloudProvider
+        ? api.models.cloud(provider as string)
+        : api.models.realtime(provider as string),
+    enabled: (isCloudProvider || state === "connected") && !!provider,
+    retry: false,
   });
 
   const connect = async () => {
@@ -336,9 +342,9 @@ export function RealtimeProviderSetup({
   };
 
   const providers = [
+    { id: "openrouter", name: "OpenRouter", desc: "Cloud models through your Lunara Box" },
     { id: "openai", name: "OpenAI", desc: "GPT Realtime voice models" },
     { id: "google", name: "Google Gemini", desc: "Gemini Live realtime voice" },
-    { id: "other", name: "Other provider", desc: "Coming soon", disabled: true },
   ];
 
   return (
@@ -349,10 +355,9 @@ export function RealtimeProviderSetup({
           {providers.map((p) => (
             <Card
               key={p.id}
-              onClick={() => !p.disabled && (setProvider(p.id), setState("idle"), setModel(null))}
+              onClick={() => (setProvider(p.id), setState("idle"), setModel(null))}
               className={cn(
-                "gap-1 p-4",
-                p.disabled ? "opacity-50" : "cursor-pointer hover:border-accent",
+                "cursor-pointer gap-1 p-4 hover:border-accent",
                 provider === p.id && "border-accent ring-2 ring-accent/25",
               )}
             >
@@ -363,7 +368,17 @@ export function RealtimeProviderSetup({
         </div>
       </div>
 
-      {provider && provider !== "other" ? (
+      {isCloudProvider ? (
+        <div className="rounded-xl border border-border p-4">
+          <p className="text-sm font-medium">Your provider key stays on your Lunara Box</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Lunara connects to OpenRouter from your box. Keys are never entered or stored in this
+            browser.
+          </p>
+        </div>
+      ) : null}
+
+      {provider && !isCloudProvider ? (
         <div className="space-y-3 rounded-xl border border-border p-4">
           <Label htmlFor="apikey">API key</Label>
           <div className="flex flex-col gap-2 sm:flex-row">
@@ -402,11 +417,21 @@ export function RealtimeProviderSetup({
         </div>
       ) : null}
 
-      {state === "connected" ? (
+      {state === "connected" || isCloudProvider ? (
         <div>
           <Label className="mb-2 block">
-            {models.isLoading ? "Retrieving available models…" : "Available realtime models"}
+            {models.isLoading
+              ? "Retrieving available models…"
+              : isCloudProvider
+                ? "Available cloud models"
+                : "Available realtime models"}
           </Label>
+          {models.isError ? (
+            <p className="text-sm text-muted-foreground">
+              Your Lunara Box has not reported any cloud models yet. Connect your Lunara backend to
+              choose one.
+            </p>
+          ) : null}
           <div className="grid gap-3 sm:grid-cols-2">
             {models.data?.map((m) => (
               <Card

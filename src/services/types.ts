@@ -190,3 +190,128 @@ export interface Appointment {
   channel: Channel;
   employeeName: string;
 }
+
+/* ------------------------------------------------------------------ Lunara Assistant
+ * Shapes below mirror the future Lunara backend API (System Agent driven).
+ * The frontend only reads them — it never controls services directly.
+ */
+
+export type TaskStatus =
+  | "pending"
+  | "running"
+  | "waiting_approval"
+  | "waiting_input"
+  | "completed"
+  | "failed"
+  | "cancelled";
+
+export interface TaskStep {
+  label: string;
+  state: "pending" | "active" | "done" | "failed";
+}
+
+export interface TaskApproval {
+  question: string;
+  detail?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+}
+
+export interface TaskInputOption {
+  value: string;
+  label: string;
+  description?: string;
+}
+
+export interface TaskInputRequest {
+  question: string;
+  detail?: string;
+  kind: "text" | "choice" | "qr";
+  options?: TaskInputOption[];
+  placeholder?: string;
+  qrCode?: string;
+}
+
+export interface AssistantTask {
+  id: string;
+  title: string;
+  description?: string;
+  status: TaskStatus;
+  progress?: number;
+  currentStep?: string;
+  steps?: TaskStep[];
+  startedAt?: string;
+  completedAt?: string;
+  error?: string;
+  technical?: string;
+  approval?: TaskApproval;
+  input?: TaskInputRequest;
+}
+
+export interface AssistantMessage {
+  id: string;
+  role: "user" | "assistant";
+  text: string;
+  at: string;
+  state?: "streaming" | "complete" | "error";
+  taskIds?: string[];
+}
+
+export interface AssistantConversation {
+  id: string;
+  title: string;
+  updatedAt: string;
+  messages: AssistantMessage[];
+}
+
+export type SystemState =
+  "ready" | "connected" | "running" | "checking" | "warning" | "error" | "not_configured";
+
+export interface SystemStatusItem {
+  id: string;
+  name: string;
+  state: SystemState;
+  detail?: string;
+  fixAvailable?: boolean;
+}
+
+export interface SystemActivityEntry {
+  id: string;
+  at: string;
+  text: string;
+  level?: "info" | "warning" | "error";
+  technical?: string;
+}
+
+export interface DiagnosticCheck {
+  id: string;
+  name: string;
+  state: "pass" | "warn" | "fail";
+  message: string;
+  fixAvailable?: boolean;
+  technical?: string;
+}
+
+/** Events the backend will stream over SSE / WebSocket. */
+export type AssistantEventType =
+  | "task_started"
+  | "task_progress"
+  | "task_completed"
+  | "task_failed"
+  | "approval_required"
+  | "user_input_required"
+  | "service_check"
+  | "service_restarted"
+  | "model_downloading"
+  | "model_ready"
+  | "configuration_changed"
+  | "test_started"
+  | "test_completed"
+  | "system_ready";
+
+export interface AssistantEvent {
+  type: AssistantEventType;
+  taskId?: string;
+  conversationId?: string;
+  payload?: unknown;
+}

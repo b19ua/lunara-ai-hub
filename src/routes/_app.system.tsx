@@ -14,6 +14,7 @@ import {
   StatusDot,
   healthToDot,
 } from "@/components/lunara/primitives";
+import { AskLunaraButton, SystemStatusList } from "@/components/lunara/assistant";
 import { api } from "@/services/api";
 
 export const Route = createFileRoute("/_app/system")({
@@ -115,6 +116,8 @@ function System() {
         ))}
       </div>
 
+      <LunaraStatusCard />
+
       <Card className="mt-6 gap-0 p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -151,13 +154,20 @@ function System() {
                   <p className="text-sm text-muted-foreground">{c.why}</p>
                 </div>
                 {c.action ? (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => toast.success(`${c.action} started`)}
-                  >
-                    {c.action}
-                  </Button>
+                  <div className="flex flex-wrap gap-2">
+                    <AskLunaraButton
+                      prompt={`${c.name} needs attention. Fix it automatically.`}
+                      label="Fix automatically"
+                      size="sm"
+                    />
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => toast.success(`${c.action} started`)}
+                    >
+                      {c.action}
+                    </Button>
+                  </div>
                 ) : (
                   <Pill tone="success">Passed</Pill>
                 )}
@@ -167,5 +177,33 @@ function System() {
         ) : null}
       </Card>
     </div>
+  );
+}
+
+function LunaraStatusCard() {
+  const status = useQuery({
+    queryKey: ["system", "status"],
+    queryFn: api.systemControl.getStatus,
+    retry: false,
+  });
+
+  return (
+    <Card className="mt-6 gap-0 p-5">
+      <h2 className="font-semibold">Lunara system status</h2>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Live status reported by your Lunara Box. Lunara performs any repair for you.
+      </p>
+      <div className="mt-4">
+        {status.isLoading ? (
+          <p className="text-sm text-muted-foreground">Checking your system…</p>
+        ) : null}
+        {status.isError ? (
+          <p className="text-sm text-muted-foreground">
+            Your Lunara backend is not reporting live status yet.
+          </p>
+        ) : null}
+        {status.data ? <SystemStatusList items={status.data} /> : null}
+      </div>
+    </Card>
   );
 }
