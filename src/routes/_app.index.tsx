@@ -22,6 +22,7 @@ import {
   StatusDot,
   healthToDot,
 } from "@/components/lunara/primitives";
+import { AssistantWidget } from "@/components/lunara/assistant-widget";
 import { api } from "@/services/api";
 import { useAppState } from "@/state/app-state";
 
@@ -94,6 +95,8 @@ function Overview() {
           </Button>
         </Card>
       ) : null}
+
+      <AssistantWidget />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
