@@ -96,6 +96,9 @@ export const modelsApi = {
     USE_MOCK
       ? delay(mock.realtimeModels[provider] ?? [], 1100)
       : request(`/models/realtime/${provider}`),
+  /** Cloud models (OpenRouter today) always come from the backend — never hardcoded,
+   *  and the provider key stays on the Lunara Box. */
+  cloud: (provider: string): Promise<RealtimeModel[]> => request(`/models/cloud/${provider}`),
   install: (id: string) => delay({ id, status: "ready" }, 600),
   connectProvider: (provider: string, _apiKey: string) =>
     delay({ provider, connected: true }, 1200),
