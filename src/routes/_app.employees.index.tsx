@@ -12,6 +12,7 @@ import {
   Pill,
   StatusDot,
 } from "@/components/lunara/primitives";
+import { AskLunaraButton } from "@/components/lunara/assistant";
 import { api } from "@/services/api";
 import type { Channel } from "@/services/types";
 
