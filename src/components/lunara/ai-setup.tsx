@@ -355,10 +355,9 @@ export function RealtimeProviderSetup({
           {providers.map((p) => (
             <Card
               key={p.id}
-              onClick={() => !p.disabled && (setProvider(p.id), setState("idle"), setModel(null))}
+              onClick={() => (setProvider(p.id), setState("idle"), setModel(null))}
               className={cn(
-                "gap-1 p-4",
-                p.disabled ? "opacity-50" : "cursor-pointer hover:border-accent",
+                "cursor-pointer gap-1 p-4 hover:border-accent",
                 provider === p.id && "border-accent ring-2 ring-accent/25",
               )}
             >
