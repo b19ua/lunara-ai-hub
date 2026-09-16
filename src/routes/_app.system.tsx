@@ -116,6 +116,8 @@ function System() {
         ))}
       </div>
 
+      <LunaraStatusCard />
+
       <Card className="mt-6 gap-0 p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

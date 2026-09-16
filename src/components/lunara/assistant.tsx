@@ -404,15 +404,17 @@ export function AskLunaraButton({
   prompt,
   label = "Ask Lunara",
   variant = "outline",
+  size = "default",
   className,
 }: {
   prompt: string;
   label?: string;
   variant?: "outline" | "default" | "ghost";
+  size?: "default" | "sm";
   className?: string;
 }) {
   return (
-    <Button asChild variant={variant} className={className}>
+    <Button asChild variant={variant} size={size} className={className}>
       <Link to="/assistant" search={{ ask: prompt }}>
         <Sparkles /> {label}
       </Link>
