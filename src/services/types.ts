@@ -265,13 +265,7 @@ export interface AssistantConversation {
 }
 
 export type SystemState =
-  | "ready"
-  | "connected"
-  | "running"
-  | "checking"
-  | "warning"
-  | "error"
-  | "not_configured";
+  "ready" | "connected" | "running" | "checking" | "warning" | "error" | "not_configured";
 
 export interface SystemStatusItem {
   id: string;

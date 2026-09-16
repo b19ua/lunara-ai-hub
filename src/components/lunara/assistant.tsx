@@ -15,11 +15,7 @@ import {
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
 import { Pill, StatusDot } from "./primitives";
 import type {
@@ -34,16 +30,15 @@ import type {
 /* ------------------------------------------------------------- status labels */
 type PillTone = "neutral" | "success" | "warning" | "danger" | "info" | "accent";
 
-const statusMeta: Record<TaskStatus, { label: string; tone: PillTone }> =
-  {
-    pending: { label: "Waiting to start", tone: "neutral" },
-    running: { label: "Working", tone: "info" },
-    waiting_approval: { label: "Needs your approval", tone: "warning" },
-    waiting_input: { label: "Needs your answer", tone: "warning" },
-    completed: { label: "Completed", tone: "success" },
-    failed: { label: "Could not finish", tone: "danger" },
-    cancelled: { label: "Cancelled", tone: "neutral" },
-  };
+const statusMeta: Record<TaskStatus, { label: string; tone: PillTone }> = {
+  pending: { label: "Waiting to start", tone: "neutral" },
+  running: { label: "Working", tone: "info" },
+  waiting_approval: { label: "Needs your approval", tone: "warning" },
+  waiting_input: { label: "Needs your answer", tone: "warning" },
+  completed: { label: "Completed", tone: "success" },
+  failed: { label: "Could not finish", tone: "danger" },
+  cancelled: { label: "Cancelled", tone: "neutral" },
+};
 
 export const systemStateMeta: Record<
   SystemState,
@@ -148,9 +143,7 @@ export function TaskCard({
                   ) : (
                     <span className="size-3.5 rounded-full border border-border" />
                   )}
-                  <span
-                    className={cn(s.state === "pending" && "text-muted-foreground")}
-                  >
+                  <span className={cn(s.state === "pending" && "text-muted-foreground")}>
                     {s.label}
                   </span>
                 </li>
@@ -219,9 +212,7 @@ function TaskInputCard({
   return (
     <div className="mt-3 rounded-lg border border-border bg-card p-3">
       <p className="text-sm font-medium">{input.question}</p>
-      {input.detail ? (
-        <p className="mt-1 text-sm text-muted-foreground">{input.detail}</p>
-      ) : null}
+      {input.detail ? <p className="mt-1 text-sm text-muted-foreground">{input.detail}</p> : null}
 
       {input.kind === "choice" ? (
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
