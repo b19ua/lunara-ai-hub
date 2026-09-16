@@ -14,6 +14,7 @@ import {
   StatusDot,
   healthToDot,
 } from "@/components/lunara/primitives";
+import { AskLunaraButton, SystemStatusList } from "@/components/lunara/assistant";
 import { api } from "@/services/api";
 
 export const Route = createFileRoute("/_app/system")({
@@ -151,13 +152,19 @@ function System() {
                   <p className="text-sm text-muted-foreground">{c.why}</p>
                 </div>
                 {c.action ? (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => toast.success(`${c.action} started`)}
-                  >
-                    {c.action}
-                  </Button>
+                  <div className="flex flex-wrap gap-2">
+                    <AskLunaraButton
+                      prompt={`${c.name} needs attention. Fix it automatically.`}
+                      label="Fix automatically"
+                    />
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => toast.success(`${c.action} started`)}
+                    >
+                      {c.action}
+                    </Button>
+                  </div>
                 ) : (
                   <Pill tone="success">Passed</Pill>
                 )}
