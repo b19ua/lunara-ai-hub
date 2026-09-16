@@ -158,6 +158,7 @@ function System() {
                     <AskLunaraButton
                       prompt={`${c.name} needs attention. Fix it automatically.`}
                       label="Fix automatically"
+                      size="sm"
                     />
                     <Button
                       size="sm"
@@ -176,5 +177,33 @@ function System() {
         ) : null}
       </Card>
     </div>
+  );
+}
+
+function LunaraStatusCard() {
+  const status = useQuery({
+    queryKey: ["system", "status"],
+    queryFn: api.systemControl.getStatus,
+    retry: false,
+  });
+
+  return (
+    <Card className="mt-6 gap-0 p-5">
+      <h2 className="font-semibold">Lunara system status</h2>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Live status reported by your Lunara Box. Lunara performs any repair for you.
+      </p>
+      <div className="mt-4">
+        {status.isLoading ? (
+          <p className="text-sm text-muted-foreground">Checking your system…</p>
+        ) : null}
+        {status.isError ? (
+          <p className="text-sm text-muted-foreground">
+            Your Lunara backend is not reporting live status yet.
+          </p>
+        ) : null}
+        {status.data ? <SystemStatusList items={status.data} /> : null}
+      </div>
+    </Card>
   );
 }
