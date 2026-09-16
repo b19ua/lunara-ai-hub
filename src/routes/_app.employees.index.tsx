@@ -50,11 +50,14 @@ function EmployeesPage() {
         title="AI Employees"
         description="Each employee has its own brain, voice, channels and knowledge."
         actions={
-          <Button asChild>
-            <Link to="/employees/new">
-              <Bot /> Create AI Employee
-            </Link>
-          </Button>
+          <>
+            <AskLunaraButton prompt="Create an AI employee for me." />
+            <Button asChild>
+              <Link to="/employees/new">
+                <Bot /> Create AI Employee
+              </Link>
+            </Button>
+          </>
         }
       />
 

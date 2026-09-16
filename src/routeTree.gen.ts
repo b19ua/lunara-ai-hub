@@ -13,6 +13,7 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AppIndexRouteImport } from './routes/_app.index'
 import { Route as AppAnalyticsRouteImport } from './routes/_app.analytics'
+import { Route as AppAssistantRouteImport } from './routes/_app.assistant'
 import { Route as AppCalendarRouteImport } from './routes/_app.calendar'
 import { Route as AppCrmRouteImport } from './routes/_app.crm'
 import { Route as AppEmailRouteImport } from './routes/_app.email'
@@ -56,6 +57,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
 const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAssistantRoute = AppAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
   getParentRoute: () => AppRoute,
 } as any)
 const AppCalendarRoute = AppCalendarRouteImport.update({
@@ -188,6 +194,7 @@ export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/welcome': typeof WelcomeRoute
   '/analytics': typeof AppAnalyticsRoute
+  '/assistant': typeof AppAssistantRoute
   '/calendar': typeof AppCalendarRoute
   '/crm': typeof AppCrmRoute
   '/email': typeof AppEmailRoute
@@ -217,6 +224,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/welcome': typeof WelcomeRoute
   '/analytics': typeof AppAnalyticsRoute
+  '/assistant': typeof AppAssistantRoute
   '/calendar': typeof AppCalendarRoute
   '/crm': typeof AppCrmRoute
   '/email': typeof AppEmailRoute
@@ -249,6 +257,7 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/welcome': typeof WelcomeRoute
   '/_app/analytics': typeof AppAnalyticsRoute
+  '/_app/assistant': typeof AppAssistantRoute
   '/_app/calendar': typeof AppCalendarRoute
   '/_app/crm': typeof AppCrmRoute
   '/_app/email': typeof AppEmailRoute
@@ -282,6 +291,7 @@ export interface FileRouteTypes {
     | '/'
     | '/welcome'
     | '/analytics'
+    | '/assistant'
     | '/calendar'
     | '/crm'
     | '/email'
@@ -311,6 +321,7 @@ export interface FileRouteTypes {
   to:
     | '/welcome'
     | '/analytics'
+    | '/assistant'
     | '/calendar'
     | '/crm'
     | '/email'
@@ -342,6 +353,7 @@ export interface FileRouteTypes {
     | '/_app'
     | '/welcome'
     | '/_app/analytics'
+    | '/_app/assistant'
     | '/_app/calendar'
     | '/_app/crm'
     | '/_app/email'
@@ -403,6 +415,13 @@ declare module '@tanstack/react-router' {
       path: '/analytics'
       fullPath: '/analytics'
       preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/assistant': {
+      id: '/_app/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AppAssistantRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/calendar': {
@@ -585,6 +604,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppAssistantRoute: typeof AppAssistantRoute
   AppCalendarRoute: typeof AppCalendarRoute
   AppCrmRoute: typeof AppCrmRoute
   AppEmailRoute: typeof AppEmailRoute
@@ -615,6 +635,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppAnalyticsRoute: AppAnalyticsRoute,
+  AppAssistantRoute: AppAssistantRoute,
   AppCalendarRoute: AppCalendarRoute,
   AppCrmRoute: AppCrmRoute,
   AppEmailRoute: AppEmailRoute,
