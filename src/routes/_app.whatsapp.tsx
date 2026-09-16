@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { PageHeader, Pill, StatusDot } from "@/components/lunara/primitives";
 import { Inbox } from "@/components/lunara/inbox";
+import { AskLunaraButton } from "@/components/lunara/assistant";
 import { api } from "@/services/api";
 
 export const Route = createFileRoute("/_app/whatsapp")({
@@ -102,6 +103,7 @@ function WhatsAppPage() {
         description="Your AI replies to messages, documents and voice notes."
         actions={
           <>
+            <AskLunaraButton prompt="Reconnect WhatsApp." />
             <QrDialog />
             <Button variant="outline" onClick={() => toast("WhatsApp disconnected")}>
               <Unplug /> Disconnect
