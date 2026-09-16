@@ -32,7 +32,9 @@ import type {
 } from "@/services/types";
 
 /* ------------------------------------------------------------- status labels */
-const statusMeta: Record<TaskStatus, { label: string; tone: Parameters<typeof Pill>[0]["tone"] }> =
+type PillTone = "neutral" | "success" | "warning" | "danger" | "info" | "accent";
+
+const statusMeta: Record<TaskStatus, { label: string; tone: PillTone }> =
   {
     pending: { label: "Waiting to start", tone: "neutral" },
     running: { label: "Working", tone: "info" },
@@ -210,8 +212,8 @@ function TaskInputCard({
   busy,
 }: {
   task: AssistantTask;
-  onSubmit?: (task: AssistantTask, value: string) => void;
-  busy?: boolean;
+  onSubmit?: ((task: AssistantTask, value: string) => void) | undefined;
+  busy?: boolean | undefined;
 }) {
   const input = task.input!;
   return (
