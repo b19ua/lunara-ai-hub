@@ -1,4 +1,4 @@
-# Edge0 145B runtime image. Model weights are intentionally mounted separately.
+# Edge0 145B runtime image. Model weights are mounted separately on persistent storage.
 FROM nvidia/cuda:13.0.2-devel-ubuntu24.04 AS build
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -23,10 +23,13 @@ RUN cmake --preset cpu && cmake --build --preset cpu -j 8
 FROM nvidia/cuda:13.0.2-runtime-ubuntu24.04
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgomp1 libstdc++6 python3 ca-certificates && rm -rf /var/lib/apt/lists/*
+    libgomp1 libstdc++6 python3 ca-certificates findutils coreutils \
+    && rm -rf /var/lib/apt/lists/*
 COPY --from=build /opt/edge0 /opt/edge0
+COPY --chmod=755 entrypoint.sh /usr/local/bin/edge0-entrypoint
 WORKDIR /opt/edge0/edge0-infer
-ENV PATH="/opt/edge0/edge0-infer/build/cpu/bin:${PATH}"
+ENV PATH="/opt/edge0/edge0-infer/build/cpu/bin:${PATH}" \
+    EDGE0_STRATA_DIR="/opt/edge0/edge0-strata" \
+    EDGE0_MODEL_DIR="/workspace/Edge0-145B-q3k"
 EXPOSE 8000
-ENTRYPOINT ["build/cpu/bin/edge0-infer"]
-CMD ["serve", "--model", "/models/Edge0-145B-q3k"]
+ENTRYPOINT ["/usr/local/bin/edge0-entrypoint"]
